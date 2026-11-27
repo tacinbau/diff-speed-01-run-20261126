@@ -49,7 +49,7 @@ export function run(input) {
   const outLen = Number(packed >> 32n);
   const D = Number(packed & 0xffffffffn);
   if (D > 0) lastD = D;
-  return decoder.decode(new Uint8Array(memory.buffer, OUT, outLen));
+  return Buffer.from(memory.buffer, OUT, outLen).toString('utf8');
 }
 
 // --- JIT / WASM warm-up ----------------------------------------------------

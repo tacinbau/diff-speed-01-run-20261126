@@ -8,7 +8,7 @@
 
 import { readFileSync } from 'node:fs';
 
-const wasmBytes = readFileSync(new URL('./myers2.wasm', import.meta.url));
+const wasmBytes = readFileSync(new URL('./solver.wasm', import.meta.url));
 const { instance } = await WebAssembly.instantiate(wasmBytes, {});
 const memory = instance.exports.memory;
 const wasmSolve = instance.exports.solve;
@@ -69,7 +69,7 @@ export function run(input) {
     if (i % 31 === 0) newParts.push(`warmup inserted ${i}\n`);
   }
   const savedLastD = lastD;
-  for (let w = 0; w < 4; w++) {
+  for (let w = 0; w < 1; w++) {
     run({ old: oldParts.join(''), new: newParts.join('') });
   }
   lastD = savedLastD;
